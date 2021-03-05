@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Exercise 1</string>
+    <string name="font_button">Change font</string>
+    <string name="color_button">Change color</string>
+</resources>
