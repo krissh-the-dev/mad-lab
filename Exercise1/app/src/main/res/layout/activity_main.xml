@@ -10,6 +10,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/product_sans"
         android:text="Hello World!"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -20,32 +21,42 @@
         app:layout_constraintVertical_bias="0.242" />
 
     <Button
-        android:id="@+id/fontButton"
+        android:id="@+id/sizeButton"
         android:layout_width="129dp"
         android:layout_height="56dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="144dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="30dp"
-        android:text="@string/font_button"
-        app:layout_constraintBottom_toTopOf="@+id/colorButton"
+        android:layout_marginBottom="252dp"
+        android:text="@string/size_button"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.0" />
+        android:fontFamily="@font/product_sans"
+        app:layout_constraintHorizontal_bias="0.234"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/colorButton"
         android:layout_width="126dp"
-        android:layout_height="52dp"
+        android:layout_height="56dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="30dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="264dp"
+        android:layout_marginBottom="252dp"
         android:text="@string/color_button"
         app:layout_constraintBottom_toBottomOf="parent"
+        android:fontFamily="@font/product_sans"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.326"
+        app:layout_constraintStart_toEndOf="@+id/sizeButton" />
+
+    <Button
+        android:id="@+id/fontButton"
+        android:layout_width="126dp"
+        android:layout_height="56dp"
+        android:text="@string/font_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        android:fontFamily="@font/product_sans"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fontButton" />
+        app:layout_constraintTop_toBottomOf="@+id/colorButton"
+        app:layout_constraintVertical_bias="0.255" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
