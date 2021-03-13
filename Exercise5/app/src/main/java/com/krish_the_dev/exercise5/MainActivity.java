@@ -10,12 +10,24 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Random;
+
 public class MainActivity extends AppCompatActivity {
     NotificationManager nm;
     NotificationChannel notificationChannel;
     final String CHANNEL_ID = "krish_the_dev.general";
 
+    Random rd = new Random();
+
     private void createNotification(String title, String message) {
+        if(title.length() == 0 || message.length() == 0) {
+            Toast.makeText(getApplicationContext(),
+                    "Please enter all the details to create a notification",
+                    Toast.LENGTH_LONG)
+                    .show();
+            return;
+        }
+
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_notification)
                 .setLargeIcon(BitmapFactory.decodeResource(getApplicationContext().getResources(), R.drawable.ic_notification))
@@ -23,7 +35,11 @@ public class MainActivity extends AppCompatActivity {
                 .setContentText(message)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
-        nm.notify(1, builder.build());
+        if (message.length() > 60) {
+            builder.setStyle(new NotificationCompat.BigTextStyle());
+        }
+
+        nm.notify(rd.nextInt(), builder.build());
 
         Toast.makeText(getApplicationContext(), "Notification created", Toast.LENGTH_SHORT).show();
     }
