@@ -29,36 +29,27 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final TextView helloText = (TextView) findViewById(R.id.textView);
-        final Button changeSizeButton = (Button) findViewById(R.id.sizeButton);
-        final Button changeColorButton = (Button) findViewById(R.id.colorButton);
-        final Button changeFontButton = (Button) findViewById(R.id.fontButton);
+        final TextView helloText = findViewById(R.id.textView);
+        final Button changeSizeButton = findViewById(R.id.sizeButton);
+        final Button changeColorButton = findViewById(R.id.colorButton);
+        final Button changeFontButton = findViewById(R.id.fontButton);
 
-        changeSizeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                helloText.setTextSize(fontSize);
-                fontSize+=4;
-                if (fontSize == 52) { fontSize = 24; }
-            }
+        changeSizeButton.setOnClickListener(v -> {
+            helloText.setTextSize(fontSize);
+            fontSize += 4;
+            if (fontSize == 52) { fontSize = 24; }
         });
 
-        changeColorButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                helloText.setTextColor(colors[currentColor]);
-                currentColor += 1;
-                if (currentColor > colors.length - 1) { currentColor = 0; }
-            }
+        changeColorButton.setOnClickListener(v -> {
+            helloText.setTextColor(colors[currentColor]);
+            currentColor += 1;
+            if (currentColor > colors.length - 1) { currentColor = 0; }
         });
 
-        changeFontButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                helloText.setTypeface(getResources().getFont(fonts[currentFont]));
-                currentFont += 1;
-                if (currentFont >= colors.length - 1) { currentFont = 0; }
-            }
+        changeFontButton.setOnClickListener(v -> {
+            helloText.setTypeface(getResources().getFont(fonts[currentFont]));
+            currentFont += 1;
+            if (currentFont >= colors.length - 1) { currentFont = 0; }
         });
     }
 }
