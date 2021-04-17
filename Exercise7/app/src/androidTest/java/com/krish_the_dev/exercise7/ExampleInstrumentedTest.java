@@ -1,4 +1,4 @@
-package com.krish_the_dev.mapexample;
+package com.krish_the_dev.exercise7;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.krish_the_dev.mapexample", appContext.getPackageName());
+        assertEquals("com.krish_the_dev.exercise7", appContext.getPackageName());
     }
 }

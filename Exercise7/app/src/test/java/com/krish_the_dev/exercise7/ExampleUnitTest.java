@@ -1,4 +1,4 @@
-package com.krish_the_dev.mapexample;
+package com.krish_the_dev.exercise7;
 
 import org.junit.Test;
 

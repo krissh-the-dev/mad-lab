@@ -7,7 +7,7 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.krish_the_dev.mapexample"
+        applicationId "com.krish_the_dev.exercise7"
         minSdkVersion 24
         targetSdkVersion 30
         versionCode 1
