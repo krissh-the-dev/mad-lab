@@ -1,6 +1,5 @@
 package com.krish_the_dev.notificationlistener;
 
-import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
@@ -9,10 +8,7 @@ import android.service.notification.NotificationListenerService;
 import android.service.notification.StatusBarNotification;
 import android.util.Log;
 import android.widget.Toast;
-
 import androidx.core.app.NotificationCompat;
-
-import java.util.Random;
 
 public class NotificationListener extends NotificationListenerService {
     private boolean bound;
@@ -81,10 +77,6 @@ public class NotificationListener extends NotificationListenerService {
     public void onNotificationPosted(StatusBarNotification sbn) {
         super.onNotificationPosted(sbn);
         if (sbn.getPackageName().equals(getPackageName())) return;
-
-        Log.d("Package Name", sbn.getPackageName() + "");
-        Log.d("ID", sbn.getId() + "");
-        Log.d("My package", getPackageName() + "");
 
         createNotification("Notification detected", "New notification was posted by " + sbn.getPackageName());
         Toast.makeText(getApplicationContext(), "New Notification was posted", Toast.LENGTH_SHORT).show();

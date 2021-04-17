@@ -1,21 +1,15 @@
 package com.krish_the_dev.notificationlistener;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.ContentResolver;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.service.notification.NotificationListenerService;
-import android.service.notification.StatusBarNotification;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
     NotificationManager nm;
@@ -57,8 +51,6 @@ public class MainActivity extends AppCompatActivity {
 
         status = findViewById(R.id.status);
         toggleBtn = findViewById(R.id.toggleBtn);
-
-        NotificationListener nl = new NotificationListener();
 
         toggleBtn.setOnClickListener(v -> {
             Toast.makeText(getApplicationContext(), "Not implemented", Toast.LENGTH_SHORT).show();
