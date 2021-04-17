@@ -2,7 +2,6 @@ package com.krish_the_dev.exercise6;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -30,7 +29,9 @@ public class MainActivity extends AppCompatActivity {
         Button pauseBtn = findViewById(R.id.pauseBtn);
         Button startBtn = findViewById(R.id.startBtn);
 
-        notificationManager = (NotificationManager) getSystemService(NotificationManager.class);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            notificationManager = getSystemService(NotificationManager.class);
+        }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             progressBar.setMin(0);
@@ -40,32 +41,26 @@ public class MainActivity extends AppCompatActivity {
             notificationManager.createNotificationChannel(notificationChannel);
         }
 
-        builder = new NotificationCompat.Builder(this, CHANNEL_ID);
-        builder.setContentTitle("Sample progress")
+        builder = new NotificationCompat.Builder(this, CHANNEL_ID)
+                .setContentTitle("Sample progress")
                 .setSmallIcon(R.drawable.ic_notification)
                 .setPriority(NotificationCompat.PRIORITY_LOW);
         progressHandler = new ProgressHandler();
 
         startBtn.setOnClickListener(b -> {
             progressHandler.toggleThreadState();
-            if(progressHandler.isLive()) {
-                startBtn.setText("Stop");
-                pauseBtn.setText("Pause");
-                pauseBtn.setEnabled(true);
-            } else {
+
+            pauseBtn.setEnabled(progressHandler.isLive());
+            startBtn.setText(progressHandler.isLive() ? "Stop" : "Start");
+
+            if (!progressHandler.isLive()) {
                 progressHandler = new ProgressHandler();
-                pauseBtn.setEnabled(false);
-                startBtn.setText("Start");
-            }
+            };
         });
 
         pauseBtn.setOnClickListener(b -> {
             progressHandler.toggleRunningState();
-            if(progressHandler.isRunning()) {
-                pauseBtn.setText("Pause");
-            } else {
-                pauseBtn.setText("Resume");
-            }
+            pauseBtn.setText(progressHandler.isRunning() ? "Pause" : "Resume");
         });
     }
 }
