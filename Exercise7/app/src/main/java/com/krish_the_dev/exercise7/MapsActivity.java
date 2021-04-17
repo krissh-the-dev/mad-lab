@@ -1,6 +1,5 @@
 package com.krish_the_dev.exercise7;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
@@ -8,13 +7,20 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.Looper;
 
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.List;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -31,12 +37,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
-        // Get location permissions
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
-                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, requiredPermissions, PackageManager.PERMISSION_GRANTED);
-        }
-
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -51,14 +51,40 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return;
+        // Get location permissions
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, requiredPermissions, PackageManager.PERMISSION_GRANTED);
         }
+
         mMap.setMyLocationEnabled(true);
-        mMap.setOnMyLocationChangeListener(currentLocation -> {
-            mMap.addMarker(new MarkerOptions()
-                    .position(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude())
-            ).title("You are here!"));
-        });
+
+        // A request object that summons location requests
+        LocationRequest locationRequest = new LocationRequest();
+        locationRequest.setInterval(120000);
+        locationRequest.setFastestInterval(120000);
+        locationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
+
+        // Invoked when the results of location requests are available
+        LocationCallback locationCallback = new LocationCallback() {
+            @Override
+            public void onLocationResult(LocationResult locationResult) {
+                super.onLocationResult(locationResult);
+
+                List<Location> locationList = locationResult.getLocations();
+                if(locationList.size() == 0) return;
+
+                Location currentLocation = locationList.get(locationList.size() - 1);
+
+                // Mark the current location in map
+                mMap.addMarker(new MarkerOptions()
+                        .position(new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude())
+                ).title("You are here!"));
+            }
+        };
+
+        LocationServices
+                .getFusedLocationProviderClient(this)
+                .requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper());
     }
 }
