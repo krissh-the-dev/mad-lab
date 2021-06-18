@@ -78,7 +78,13 @@ public class NotificationListener extends NotificationListenerService {
         super.onNotificationPosted(sbn);
         if (sbn.getPackageName().equals(getPackageName())) return;
 
-        createNotification("Notification detected", "New notification was posted by " + sbn.getPackageName());
+        Log.d("Notification", sbn.getNotification().toString());
+
+
+        if(!(sbn.getNotification().toString().contains("msg") || sbn.getNotification().toString().contains("chat")))
+            return;
+
+        createNotification("Message received", "New message received on " + sbn.getPackageName());
         Toast.makeText(getApplicationContext(), "New Notification was posted", Toast.LENGTH_SHORT).show();
     }
 }
