@@ -6,6 +6,7 @@ import android.app.NotificationManager;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Process;
 import android.provider.Settings;
 import android.widget.Button;
 import android.widget.TextView;
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         if(!isNotificationServiceRunning()) {
             Toast.makeText(getApplicationContext(),
                     "Please select Notification Listener app and give notification access permission",
-                    Toast.LENGTH_SHORT)
+                    Toast.LENGTH_LONG)
                     .show();
             startActivity(new Intent(Settings.ACTION_NOTIFICATION_LISTENER_SETTINGS));
         }
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         toggleBtn = findViewById(R.id.toggleBtn);
 
         toggleBtn.setOnClickListener(v -> {
-            Toast.makeText(getApplicationContext(), "Not implemented", Toast.LENGTH_SHORT).show();
+            Process.killProcess(Process.myPid());
         });
     }
 }
