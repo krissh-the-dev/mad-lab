@@ -11,12 +11,7 @@ import android.widget.Toast;
 import androidx.core.app.NotificationCompat;
 
 public class NotificationListener extends NotificationListenerService {
-    private boolean bound;
     NotificationManager nm;
-
-    public boolean isBound() {
-        return bound;
-    }
 
     private void createNotification(String title, String message) {
         nm = getSystemService(NotificationManager.class);
@@ -48,7 +43,6 @@ public class NotificationListener extends NotificationListenerService {
     public void onListenerConnected() {
         super.onListenerConnected();
 
-        bound = true;
         MainActivity.status.setText("Active");
         MainActivity.status.setTextColor(Color.GREEN);
     }
@@ -63,13 +57,11 @@ public class NotificationListener extends NotificationListenerService {
 
     @Override
     public boolean onUnbind(Intent intent) {
-        bound = false;
         return super.onUnbind(intent);
     }
 
     @Override
     public void onRebind(Intent intent) {
-        bound = true;
         super.onRebind(intent);
     }
 
@@ -77,9 +69,6 @@ public class NotificationListener extends NotificationListenerService {
     public void onNotificationPosted(StatusBarNotification sbn) {
         super.onNotificationPosted(sbn);
         if (sbn.getPackageName().equals(getPackageName())) return;
-
-        Log.d("Notification", sbn.getNotification().toString());
-
 
         if(!(sbn.getNotification().toString().contains("msg") || sbn.getNotification().toString().contains("chat")))
             return;
