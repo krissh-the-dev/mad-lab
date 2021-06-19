@@ -9,7 +9,7 @@
 | 5       |          Android application that creates a notification           |   [v5.1](https://github.com/KrishnaMoorthy12/mad-lab/releases/tag/v5.1) |
 | 6       |        Android application that implements Multi-threading         |   [v6.2](https://github.com/KrishnaMoorthy12/mad-lab/releases/tag/v6.2) |
 | 7       |  A native android application that uses GPS location information   |   [v7.1](https://github.com/KrishnaMoorthy12/mad-lab/releases/tag/v7.1) |
-| 8       |            An application that performs I/O operations             |   [v8.0](https://github.com/KrishnaMoorthy12/mad-lab/releases/tag/v8.0) |
-| 9       | Android application that creates an alert upon receiving a message |   [v9.0](https://github.com/KrishnaMoorthy12/mad-lab/releases/tag/v9.0) |
+| 8       |            An application that performs I/O operations             |   [v8.1](https://github.com/KrishnaMoorthy12/mad-lab/releases/tag/v8.1) |
+| 9       | Android application that creates an alert upon receiving a message |   [v9.1](https://github.com/KrishnaMoorthy12/mad-lab/releases/tag/v9.1) |
 | 10      |           Android application that makes use of RSS Feed           | [v10.0](https://github.com/KrishnaMoorthy12/mad-lab/releases/tag/v10.0) |
 | 11      |                An android application to send email                | [v11.0](https://github.com/KrishnaMoorthy12/mad-lab/releases/tag/v11.0) |
