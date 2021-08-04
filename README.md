@@ -1,5 +1,7 @@
 # MAD Lab experiments
 
+If you find this useful give this repo a Star ⭐️ and consider following me. It gives me some motivation. I have put in a lot of effort and time building these applications 🥺👉👈
+
 | Ex. No. |                          Experiment Name                           |                                                                 Release |
 | ------- | :----------------------------------------------------------------: | ----------------------------------------------------------------------: |
 | 1       |   Android application that uses GUI components, Font and Colors    |   [v1.2](https://github.com/KrishnaMoorthy12/mad-lab/releases/tag/v1.2) |
@@ -13,3 +15,5 @@
 | 9       | Android application that creates an alert upon receiving a message |   [v9.1](https://github.com/KrishnaMoorthy12/mad-lab/releases/tag/v9.1) |
 | 10      |           Android application that makes use of RSS Feed           | [v10.0](https://github.com/KrishnaMoorthy12/mad-lab/releases/tag/v10.0) |
 | 11      |                An android application to send email                | [v11.0](https://github.com/KrishnaMoorthy12/mad-lab/releases/tag/v11.0) |
+
+©️ 2021, Krishna Moorthy.
